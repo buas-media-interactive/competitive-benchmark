@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Competitive benchmark, step by step. INTD</title>
+<style>
+/* Fonts: self-hosted from the Delicioso INTD design system */
+@font-face{font-family:'Hanken Grotesk';font-style:italic;font-weight:100 900;font-display:swap;src:url('fonts/hanken-grotesk-italic-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:'Hanken Grotesk';font-style:italic;font-weight:100 900;font-display:swap;src:url('fonts/hanken-grotesk-italic-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:100 900;font-display:swap;src:url('fonts/hanken-grotesk-normal-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:100 900;font-display:swap;src:url('fonts/hanken-grotesk-normal-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Newsreader';font-style:italic;font-weight:200 800;font-display:swap;src:url('fonts/newsreader-italic-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:'Newsreader';font-style:italic;font-weight:200 800;font-display:swap;src:url('fonts/newsreader-italic-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:200 800;font-display:swap;src:url('fonts/newsreader-normal-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:200 800;font-display:swap;src:url('fonts/newsreader-normal-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+
+/* Tokens: values copied from the Delicioso INTD design system (tokens.json) */
+:root {
+  --cream: #F7F4EB;
+  --cream-tint-2: #FDFCF9;
+  --cream-shade-1: #E0D7CA;
+  --oat: #F2EBDD;
+  --peach-tint-1: #FAE2D9;
+  --coral: #F07F7A;
+  --coral-tint-2: #FAD3D2;
+  --coral-shade-1: #C06964;
+  --sage-tint-2: #E1EBDF;
+  --sage-tint-1: #C4D7BF;
+  --green: #2E5E3F;
+  --green-shade-2: #23412D;
+  --teal-tint-2: #CEE1DF;
+  --teal-shade-2: #476A63;
+  --pink-shade-1: #C25A90;
+
+  --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --page-margin: clamp(24px, 5vw, 72px);
+  --measure: 62ch;
+  --ease-out: cubic-bezier(.22,.61,.36,1);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--green);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.5;
+  counter-reset: step;
+}
+main { max-width: 56rem; margin: 0 auto; padding: 28px var(--page-margin) 96px; }
+h1, h2, h3 { font-family: var(--font-serif); font-weight: 300; margin: 0; color: var(--green); font-optical-sizing: auto; text-wrap: balance; }
+h1 { font-size: clamp(44px, 7vw, 76px); line-height: .98; letter-spacing: -0.025em; }
+h2 { font-size: clamp(40px, 5vw, 56px); line-height: 1; letter-spacing: -0.025em; }
+em { font-style: italic; }
+p { margin: 0 0 14px; max-width: var(--measure); text-wrap: pretty; }
+strong { font-weight: 600; }
+a { color: var(--green); text-decoration: underline; text-decoration-color: var(--coral); text-underline-offset: 3px; }
+a:hover { color: var(--coral-shade-1); }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--teal-shade-2); outline-offset: 3px; }
+
+.eyebrow { font-weight: 600; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; margin: 0; }
+
+/* top bar */
+.top { display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+.top img { width: 150px; height: auto; display: block; }
+
+/* header + scene */
+header { margin-top: 56px; }
+.lede { font-size: 21px; line-height: 1.4; margin-top: 24px; max-width: 34em; }
+.toolbar { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.btn {
+  font: 600 15px/1 var(--font-sans);
+  padding: 14px 22px;
+  border-radius: 999px;
+  border: 1.5px solid var(--green);
+  background: transparent;
+  color: var(--green);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 120ms var(--ease-out), color 120ms var(--ease-out);
+}
+.btn:hover { background: var(--sage-tint-2); color: var(--green); }
+.btn:active { transform: translateY(1px); }
+.btn.primary { background: var(--green); color: var(--cream); }
+.btn.primary:hover { background: var(--green-shade-2); color: var(--cream); }
+
+.scene { position: relative; height: 210px; margin-top: 8px; }
+.scene::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--green); }
+.scene img { position: absolute; right: 6%; bottom: -5px; height: 190px; width: auto; }
+
+/* before you start */
+.before { margin-top: 56px; padding: 28px 32px; background: var(--cream-tint-2); border: 1px solid var(--cream-shade-1); border-radius: 4px; }
+.before h2 { font-size: 34px; margin-bottom: 16px; }
+.before ul { margin: 0; padding-left: 20px; }
+.before li { margin-bottom: 10px; max-width: var(--measure); }
+
+/* parts */
+.part { margin-top: 88px; }
+.part-head { position: relative; padding-bottom: 28px; min-height: 190px; }
+.part-head::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--green); }
+.part-head .eyebrow { margin-bottom: 12px; }
+.part-head p { margin-top: 14px; max-width: 30em; font-size: 19px; line-height: 1.4; }
+.part-head p.eyebrow { margin-top: 0; max-width: none; font-size: 11px; line-height: 1.5; }
+.part-head img { position: absolute; right: 4%; bottom: -2px; height: 150px; width: auto; }
+.part-head > *:not(img) { position: relative; z-index: 1; }
+.hold { margin: 24px 0 0; padding: 14px 18px; background: var(--sage-tint-2); border-radius: 4px; font-size: 15px; max-width: none; }
+
+.steps { margin-top: 28px; }
+details { margin-bottom: 12px; background: var(--cream-tint-2); border: 1px solid var(--cream-shade-1); border-radius: 4px; counter-increment: step; }
+.p2 details::before { content: none; }
+summary {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 64px 1fr 20px;
+  gap: 16px;
+  align-items: center;
+  padding: 18px 22px;
+  cursor: pointer;
+}
+summary::-webkit-details-marker { display: none; }
+summary::before {
+  content: counter(step, decimal-leading-zero);
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 44px;
+  line-height: 1;
+  color: var(--coral-shade-1);
+}
+.p2 summary::before { color: var(--pink-shade-1); }
+summary::after {
+  content: "";
+  width: 9px; height: 9px;
+  border-right: 2px solid var(--green); border-bottom: 2px solid var(--green);
+  transform: rotate(45deg);
+  transition: transform 200ms var(--ease-out);
+  justify-self: end;
+}
+details[open] > summary::after { transform: rotate(-135deg); }
+details[open] > summary { border-bottom: 1px solid var(--cream-shade-1); }
+summary:hover .t { color: var(--green-shade-2); }
+summary .t { font-family: var(--font-serif); font-weight: 400; font-size: 28px; line-height: 1.15; display: block; }
+summary .o { font-size: 15px; color: var(--teal-shade-2); display: block; margin-top: 2px; }
+.body { padding: 24px 28px 28px 102px; }
+.body ul { padding-left: 20px; margin: 0 0 16px; }
+.body li { margin-bottom: 6px; max-width: var(--measure); }
+@media (max-width: 40rem) { .body { padding: 20px 22px 24px; } summary { grid-template-columns: 48px 1fr 16px; gap: 12px; } summary::before { font-size: 36px; } summary .t { font-size: 24px; } }
+
+.lecture { margin: 22px 0 0; padding-top: 12px; border-top: 1px solid var(--cream-shade-1); font-size: 14px; color: var(--teal-shade-2); }
+
+/* notes: flat coloured blocks that mirror what students make in FigJam */
+.note { margin: 18px 0; padding: 16px 20px 6px; max-width: 36rem; color: var(--green-shade-2); font-size: 15.5px; line-height: 1.5; background: var(--teal-tint-2); }
+.note .tag { font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.note .tag img { width: 22px; height: auto; }
+.note p { margin-bottom: 10px; }
+.note ul { margin: 0 0 10px; padding-left: 18px; }
+.note li { margin-bottom: 4px; }
+.note.weak { background: var(--coral-tint-2); }
+.note.strong { background: var(--sage-tint-1); }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; align-items: start; margin: 18px 0; }
+.pair .note { max-width: none; margin: 0; }
+@media (max-width: 40rem) { .pair { grid-template-columns: 1fr; gap: 12px; } }
+
+.tablewrap { overflow-x: auto; margin: 22px -14px 22px -74px; }
+@media (max-width: 40rem) { .tablewrap { margin: 22px 0; } }
+table { border-collapse: collapse; min-width: 42rem; width: 100%; font-size: 14.5px; line-height: 1.45; background: var(--cream-tint-2); }
+caption { text-align: left; font-size: 14px; color: var(--teal-shade-2); padding-bottom: 8px; }
+th, td { border: 1px solid var(--cream-shade-1); padding: 10px 12px; text-align: left; vertical-align: top; }
+th { background: var(--oat); font-weight: 600; }
+.verify { display: inline-block; background: var(--peach-tint-1); color: var(--green-shade-2); padding: 1px 10px; border-radius: 999px; font-weight: 500; font-size: 12px; }
+
+.checks { margin-top: 22px; padding: 18px 22px 8px; background: var(--sage-tint-2); border-radius: 4px; }
+.checks h3 { font-family: var(--font-serif); font-weight: 400; font-size: 24px; margin-bottom: 8px; }
+.checks ul { margin: 0 0 10px; padding-left: 20px; }
+
+footer { margin-top: 96px; padding-top: 24px; border-top: 3px solid var(--green); font-size: 14.5px; color: var(--teal-shade-2); }
+footer h2 { font-size: 30px; color: var(--green); margin-bottom: 10px; }
+footer ul { padding-left: 20px; }
+footer li { margin-bottom: 6px; }
+
+@media (max-width: 40rem) { .scene img { height: 150px; right: 2%; } .scene { height: 170px; } .part-head img { display: none; } .part-head { min-height: 0; } .before { padding: 22px 20px; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } summary::after, .btn { transition: none; } }
+</style>
+</head>
+<body>
+<main>
+
+<div class="top">
+  <p class="eyebrow">INTD / Competitive benchmark</p>
+  <img src="img/intd-logo.svg" alt="INTD, Intercultural Dialogues">
+</div>
+
+<header>
+  <h1>Scan the field. Read what it <em>means</em>.</h1>
+  <p class="lede">Two parts, one FigJam board. Part 1 scans what competitors do. Part 2 reads what it means, and what you will do about it. The result feeds question 1.3 of your Creative Brief.</p>
+  <div class="toolbar">
+    <!-- TODO: replace # with the FigJam template link before publishing -->
+    <a class="btn primary" id="template-link" href="#">Open the FigJam template</a>
+    <button class="btn" type="button" id="expand">Expand all steps</button>
+    <button class="btn" type="button" id="collapse">Collapse all steps</button>
+  </div>
+  <div class="scene" aria-hidden="true">
+    <img src="img/woman-laptop-hearing-aid.png" alt="">
+  </div>
+</header>
+
+<section class="before" aria-labelledby="before-h">
+  <h2 id="before-h">Before you start.</h2>
+  <ul>
+    <li><strong>One tool.</strong> Duplicate the template into your team’s FigJam. This guide explains. The board is where you work.</li>
+    <li><strong>Who does what.</strong> In Part 1, each of you takes one or two competitors and puts your name and sticky colour on every card. In Part 2, you work together. Your oral exam draws on what you can show you did.</li>
+    <li><strong>Evidence.</strong> Every entry gets a link or screenshot, and the date you saw it.</li>
+    <li><strong>Describe, then interpret.</strong> Part 1 is what is there. Part 2 is what it means. Keep them apart.</li>
+    <li><strong>Culture comes from what the brand shows and says.</strong> Never infer a culture layer from how someone looks, their name or their nationality.</li>
+    <li><strong>About the examples.</strong> They use oat drinks (Oatly, Alpro and dairy milk), a category that is not your client’s. They are written from press coverage, so look at the real pieces yourself. Do not reuse the example answers.</li>
+  </ul>
+</section>
+
+<!-- ============ PART 1 ============ -->
+<section class="part p1" aria-labelledby="p1">
+  <div class="part-head">
+    <p class="eyebrow">Part 1 / Week 1</p>
+    <h2 id="p1">Scan.</h2>
+    <p>Who else is in this space? Where do they show up, and how do they sound? Keep it factual, so anyone could check what you wrote.</p>
+    <img src="img/cargo-bike-dog.png" alt="" aria-hidden="true">
+  </div>
+
+  <div class="steps">
+  <details>
+    <summary><span><span class="t">Choose your competitors.</span><span class="o">Three to five brands, each with a reason.</span></span></summary>
+    <div class="body">
+      <p>Pick three to five brands your audience might choose instead of, or alongside, your client. Include at least one direct and one indirect competitor.</p>
+      <ul>
+        <li><strong>Direct:</strong> meets the same need in the same way.</li>
+        <li><strong>Indirect:</strong> meets the same need in a different way.</li>
+      </ul>
+      <p>Write one sentence per brand on why it is comparable. Choose brands your audience actually meets, not only the ones you already know. Agree who owns which brand.</p>
+      <aside class="note">
+        <p class="tag">Example, competitor set for an oat drink</p>
+        <p><strong>Alpro, direct:</strong> another plant-based drink on the same shelf.</p>
+        <p><strong>Dairy milk, indirect:</strong> same need (milk for coffee or cereal), different solution.</p>
+      </aside>
+      <p class="lecture">Lecture link. Creative Benchmarking, Week 1.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span><span class="t">Map where they show up.</span><span class="o">A log of at least five recent pieces per brand.</span></span></summary>
+    <div class="body">
+      <p>For each competitor, collect at least five recent pieces from different places: ads, packaging, social posts, street or in-store activity, press. For every piece, log where it ran, the format, whether it is paid, owned, earned or shared, the link or screenshot, and the date you saw it.</p>
+      <ul>
+        <li><strong>Paid:</strong> bought space. <strong>Owned:</strong> the brand’s own pack, site, accounts or venue.</li>
+        <li><strong>Earned:</strong> others talk about it, as in press and reviews. <strong>Shared:</strong> people post it or pass it on.</li>
+      </ul>
+      <p>Then answer one question: how often and how consistently does this brand show up?</p>
+      <aside class="note">
+        <p class="tag">Example, Oatly</p>
+        <ul>
+          <li>Pack: climate message printed on cartons, 2026 (owned).</li>
+          <li>Street and café: outdoor ads plus a free-coffee tour in the UK, 2025 (paid, plus experiential).</li>
+          <li>Place: a bike-thru café in Amsterdam, 2026 (owned, and earned through press).</li>
+          <li>Presence: campaigns in at least four markets (UK, Netherlands, Sweden, Spain). One voice, different topics.</li>
+        </ul>
+      </aside>
+      <p class="lecture">Lecture link. Creative Benchmarking, Week 1. Stakeholder mapping shows who else shapes the category.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span><span class="t">Hear the tone.</span><span class="o">One tone line and one promise line per brand.</span></span></summary>
+    <div class="body">
+      <p>Describe the tone in three words, and back each word with a short example from a piece: a phrase, a visual detail. Write the promise in one sentence: what does this brand claim you get?</p>
+      <p>Record both per piece first, then summarise per brand. If a brand’s pieces disagree, write that down. It is information.</p>
+      <div class="pair">
+        <aside class="note weak">
+          <p class="tag"><img src="img/cross-coral.png" alt="">Weak</p>
+          <p>Friendly, fun and modern.</p>
+        </aside>
+        <aside class="note strong">
+          <p class="tag"><img src="img/check-green.png" alt="">Strong</p>
+          <p>Dry, ironic, direct. The carton copy feigns politeness to politicians, then undercuts it with “no, of course not.”</p>
+        </aside>
+      </div>
+      <aside class="note">
+        <p class="tag">Example, Oatly’s promise, per piece</p>
+        <p>2025 outdoor: you will prefer the taste (blind taste test).</p>
+        <p>2026 carton: the brand argues for climate action, not about the product.</p>
+      </aside>
+      <p class="lecture">Lecture link. Semiotics and how to read advertisements, Week 1. This is your first look at tone.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span><span class="t">Note who is addressed.</span><span class="o">Two short lists per brand: addressed and suggested.</span></span></summary>
+    <div class="body">
+      <p>Use two columns.</p>
+      <ul>
+        <li><strong>Addressed:</strong> who the brand names or speaks to directly.</li>
+        <li><strong>Suggested:</strong> who the setting, language and people shown seem to imagine.</li>
+      </ul>
+      <p>Write what you can see. Do not infer anyone’s ethnicity, religion or background from appearance. This tells you who the brand imagines, not who actually buys.</p>
+      <aside class="note">
+        <p class="tag">Example, Oatly</p>
+        <p><strong>Addressed:</strong> politicians (carton copy).</p>
+        <p><strong>Suggested:</strong> cyclists and café-goers in Amsterdam. The Bike Thru is built around bikes.</p>
+      </aside>
+      <p class="lecture">Lecture link. Social Network Theory and stakeholder mapping, Week 1.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span><span class="t">Add one criterion of your own.</span><span class="o">One question, one reason, applied to every brand.</span></span></summary>
+    <div class="body">
+      <p>Add a criterion that matters for your client’s category, and apply it to every competitor. A good one:</p>
+      <ul>
+        <li>is something you can observe in the pieces, not guess;</li>
+        <li>matters in your client’s category;</li>
+        <li>gives you something the other criteria do not. Test it: would your synthesis lose something if you dropped it?</li>
+      </ul>
+      <p>Write it as a question in the template header, with one line on why you chose it. It becomes an extra column in your synthesis (step 11). If you are stuck, think about how a brand handles criticism, how local or international it feels, or what it chooses not to say. Try your own idea first.</p>
+      <aside class="note">
+        <p class="tag">Example, a criterion from the oat-drink set</p>
+        <p><strong>Question:</strong> how does the brand handle criticism?</p>
+        <p><strong>Observed:</strong> Oatly’s Spanish campaign invites people to learn about the company through the bad things said about it, including a staged comedy roast.</p>
+        <p><strong>Why it matters here:</strong> it shows whether a brand in this category can laugh at itself.</p>
+      </aside>
+    </div>
+  </details>
+  </div>
+</section>
+
+<!-- ============ PART 2 ============ -->
+<section class="part p2" aria-labelledby="p2h">
+  <div class="part-head">
+    <p class="eyebrow">Part 2 / Week 2</p>
+    <h2 id="p2h">Read and decide.</h2>
+    <p>Look closely at a few pieces. Ask what they mean and for whom, then decide what your campaign does about it.</p>
+    <img src="img/grandma-reading-stool.png" alt="" aria-hidden="true">
+  </div>
+  <p class="hold">Start with Part 1. Part 2 builds on your Week 1 log and on this week’s lectures on brands and the creative brief. Finish it early in Week 3 at the latest, because the brief closes at the end of that week.</p>
+
+  <div class="steps">
+  <details>
+    <summary><span><span class="t">Pick the pieces.</span><span class="o">Two or three pieces per brand, one frame each.</span></span></summary>
+    <div class="body">
+      <p>From your Part 1 log, choose two or three pieces per competitor. Pick the ones most different from each other, not the most beautiful. Include at least one that is not an ad, such as a pack, a space or a post. Put each piece on its own frame with the image.</p>
+      <p>Read your own brands first, then talk each piece through with your team before you finalise it.</p>
+      <p class="lecture">Lecture link. Understanding brands in advertising, Week 2.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span><span class="t">Read the signs.</span><span class="o">Signs per piece, each with denotation and connotation.</span></span></summary>
+    <div class="body">
+      <p>List the signs in the piece: colour, type, setting, people, objects, words. For each one, write what it literally shows (denotation), then what it suggests (connotation). Ask what the audience needs to know already to get it.</p>
+      <div class="pair">
+        <aside class="note weak">
+          <p class="tag"><img src="img/cross-coral.png" alt="">Weak</p>
+          <p>The carton has a lot of text. It feels bold and different.</p>
+        </aside>
+        <aside class="note strong">
+          <p class="tag"><img src="img/check-green.png" alt="">Strong, Oatly carton</p>
+          <p><strong>Denotation:</strong> two text blocks run down the side, one of 11 words and one of 89.</p>
+          <p><strong>Connotation:</strong> the block lengths make a statistic visible, like a bar chart made of words. Opening with “Politicians” makes the shopper a witness, not the target.</p>
+        </aside>
+      </div>
+      <p class="lecture">Lecture link. Semiotics and how to read advertisements, Week 1.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span><span class="t">Separate the claims.</span><span class="o">Rational, emotional and implied claims per piece.</span></span></summary>
+    <div class="body">
+      <p>For each piece, split what it says into three:</p>
+      <ul>
+        <li><strong>Rational claim:</strong> what it states. Can you check it?</li>
+        <li><strong>Emotional appeal:</strong> what it wants you to feel.</li>
+        <li><strong>Implied:</strong> what it suggests without saying it. Mark this as your reading.</li>
+      </ul>
+      <aside class="note">
+        <p class="tag">Example, Oatly carton</p>
+        <p><strong>Rational:</strong> most people worldwide want governments to do more on climate. The figure comes from polling cited by a climate-journalism initiative. We have not verified it ourselves.</p>
+        <p><strong>Emotional:</strong> belonging. You are in the majority, not alone.</p>
+        <p><strong>Implied (our reading):</strong> buying this brand puts you on that side.</p>
+      </aside>
+    </div>
+  </details>
+
+  <details>
+    <summary><span><span class="t">Ask whose story it is.</span><span class="o">Perspective, culture layers and one misfire hypothesis per piece.</span></span></summary>
+    <div class="body">
+      <p>Ask who speaks, who is spoken to, and who is missing. Then name two or three culture layers the piece draws on, using the layers from your brief: generation, language, values, taste and media habits, platform culture. Finally, ask for whom it could misfire, and why. Treat the answer as a hypothesis, not a fact.</p>
+      <aside class="note">
+        <p class="tag">Example, Oatly carton</p>
+        <p><strong>Whose story:</strong> citizens as a silent majority, speaking to politicians. The minority appears only as the 11-word block.</p>
+        <p><strong>Layers:</strong> values (civic voice), taste and media habits (a brand as a political voice).</p>
+        <p><strong>Possible misfire:</strong> people who read a political message on a food pack as preaching. Test this, do not assume it.</p>
+      </aside>
+      <p class="lecture">Lecture link. Cultural Dialogue, Representation and Appropriation.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span><span class="t">Check the medium.</span><span class="o">One convention and one follow-or-bend note per piece.</span></span></summary>
+    <div class="body">
+      <p>Every medium has habits: what a pack, a poster, a post or a café normally does. Write down the habit, then say whether the piece follows it or bends it. Look beyond the category too. An idea can borrow from film, news, games or another medium, and that is often where originality comes from.</p>
+      <aside class="note">
+        <p class="tag">Example, Oatly</p>
+        <p><strong>Carton:</strong> normally carries product information. Oatly uses that space for a political message, so it bends the habit.</p>
+        <p><strong>Bike Thru:</strong> a drive-thru is a car format. Redesigned around cyclists, it borrows the format and flips who it serves.</p>
+      </aside>
+    </div>
+  </details>
+
+  <details>
+    <summary><span><span class="t">Decide.</span><span class="o">One team frame that feeds Creative Brief 1.3.</span></span></summary>
+    <div class="body">
+      <p>Stop describing and start deciding. Work as a team on one frame, in two parts.</p>
+      <ul>
+        <li><strong>Part A:</strong> one row per competitor, with look, tone, claims, channels and your own criterion.</li>
+        <li><strong>Part B:</strong> three headings. <strong>Conventions:</strong> what most of the set does. <strong>Follow or break:</strong> what your agency will do with each convention, and why. <strong>Open space:</strong> what competitors leave open.</li>
+      </ul>
+      <p>Every entry cites at least one piece from your board. Question 1.3 of your brief asks exactly this: which conventions exist, which you will follow or deliberately break, and what is left open.</p>
+
+      <div class="tablewrap">
+        <table>
+          <caption>Part A, illustrative only. Yours must be complete and based on pieces you collected.</caption>
+          <thead>
+            <tr><th>Brand</th><th>Look</th><th>Tone</th><th>Claims</th><th>Channels</th><th>Your criterion: criticism</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Oatly</td>
+              <td>Text-led. The carton is used as a message space.</td>
+              <td>Dry, ironic, direct.</td>
+              <td>Taste (2025). Climate and policy (2026).</td>
+              <td>Pack, outdoor, street tours, its own venue.</td>
+              <td>Invites it in (Spain, staged roast).</td>
+            </tr>
+            <tr>
+              <td>Alpro</td>
+              <td>Flavour-led. More room for imagery and type, a hand-cut typeface, vivid whites with pops of colour (2023 redesign).</td>
+              <td>Lighter, informal, describes taste.</td>
+              <td>Taste and texture first, health and planet alongside. A 2026 campaign built on music and rhythm.</td>
+              <td>Pack, plus campaigns per market.</td>
+              <td>Not checked here.</td>
+            </tr>
+            <tr>
+              <td>Dairy milk <span class="verify">verify</span></td>
+              <td>Origin and farm cues in older Campina work.</td>
+              <td>Down-to-earth, likeable (older Campina description).</td>
+              <td>Origin: Dutch milk from member farmers (older campaign).</td>
+              <td>Not checked here.</td>
+              <td>Not checked here.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <aside class="note">
+        <p class="tag">Example, Part B, one entry per heading</p>
+        <p><strong>Convention:</strong> taste is the headline claim. Seen in Alpro’s redesign and Oatly’s 2025 taste test.</p>
+        <p><strong>Follow or break:</strong> follow only if we can say something specific about taste. Otherwise break it, because the claim is crowded.</p>
+        <p><strong>Open space:</strong> the pack as a place for an argument. Only Oatly uses it, and its trade-off is untested: how it reads for people who disagree.</p>
+      </aside>
+
+      <div class="checks">
+        <h3>Check before you finish.</h3>
+        <ul>
+          <li>Each convention points to a piece on your board.</li>
+          <li>Each convention has a clear follow or break, with a reason.</li>
+          <li>Open space says where, not “be more creative”.</li>
+          <li>Your own criterion appears in the table and changes at least one decision.</li>
+        </ul>
+      </div>
+      <p class="lecture">Lecture link. Advertising creative brief, Week 2. Data says what is happening. Your synthesis says what it means for your campaign.</p>
+    </div>
+  </details>
+  </div>
+</section>
+
+<footer>
+  <h2>Where the examples come from.</h2>
+  <p>Press coverage, read in November 2026. Campaigns move on, so look at the real pieces.</p>
+  <ul>
+    <li><a href="https://vegconomist.com/marketing-and-media/oatly-prints-climate-action-message-cartons-bid-mobilize-the-89/">vegconomist, Oatly carton campaign (31 August 2026)</a></li>
+    <li><a href="https://www.grocerygazette.co.uk/2025/03/11/oatly-tour-campaign-free/">Grocery Gazette, Oatly free-coffee tour (11 March 2025)</a></li>
+    <li><a href="https://www.famouscampaigns.com/?p=45934">Famous Campaigns, Oatly Bike Thru in Amsterdam (May 2026)</a></li>
+    <li><a href="https://esmmagazine.com/a-brands/oatly-gives-controversy-a-quirky-twist-with-fck-oatly-campaign-in-spain-267869">ESM Magazine, Oatly campaign in Spain</a></li>
+    <li><a href="https://aws1.campaignasia.com/article/alpro-unveils-global-brand-redesign-bursting-with-flavour/491522">Campaign Asia, Alpro brand redesign (14 September 2023)</a></li>
+    <li><a href="https://www.news247.gr/publi/to-alpro-kai-i-marseaux-vazoun-ti-gefsi-sto-repeat/">News247, Alpro campaign built on music and rhythm (12 October 2026)</a></li>
+  </ul>
+</footer>
+
+</main>
+<script>
+(function () {
+  var all = function () { return document.querySelectorAll('details'); };
+  document.getElementById('expand').addEventListener('click', function () {
+    all().forEach(function (d) { d.open = true; });
+  });
+  document.getElementById('collapse').addEventListener('click', function () {
+    all().forEach(function (d) { d.open = false; });
+  });
+})();
+</script>
+</body>
+</html>
