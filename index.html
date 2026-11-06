@@ -184,6 +184,28 @@ footer li { margin-bottom: 6px; }
 
 @media (max-width: 40rem) { .scene img { height: 150px; right: 2%; } .scene { height: 170px; } .part-head img { display: none; } .part-head { min-height: 0; } .before { padding: 22px 20px; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } summary::after, .btn { transition: none; } }
+
+/* locked (coming soon) cards */
+.locked { background: var(--sage-tint-2); }
+.locked summary { cursor: default; }
+.locked summary::after { content: none; }
+.locked summary:hover .t { color: var(--green); }
+.p3 summary::before { color: var(--teal-shade-2); }
+.soon { display: inline-block; margin-left: 10px; padding: 1px 12px; border-radius: 999px; background: var(--peach-tint-1); color: var(--green-shade-2); font: 500 12px/1.6 var(--font-sans); vertical-align: middle; }
+.part-head.noimg { min-height: 0; }
+.handin { margin: 18px 0 0; padding: 14px 18px; background: var(--peach-tint-1); border-radius: 4px; font-size: 15px; max-width: none; }
+
+/* sticky section menu */
+html { scroll-padding-top: 76px; }
+.nav { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 6px; margin: 28px 0 0; padding: 10px 0; background: var(--cream); border-bottom: 1px solid var(--cream-shade-1); overflow-x: auto; white-space: nowrap; }
+.nav a { font: 600 14px/1 var(--font-sans); padding: 9px 14px; border-radius: 999px; text-decoration: none; color: var(--green); flex: none; }
+.nav a:hover { background: var(--sage-tint-2); color: var(--green); }
+.nav a[aria-current="true"] { background: var(--green); color: var(--cream); }
+.nav a[aria-current="true"]:hover { background: var(--green-shade-2); }
+.nav .tpl { margin-left: auto; border: 1.5px solid var(--green); }
+.nav .x { font-weight: 400; }
+@media (max-width: 40rem) { .nav .x { display: none; } }
+
 </style>
 </head>
 <body>
@@ -195,10 +217,10 @@ footer li { margin-bottom: 6px; }
 </div>
 
 <header>
-  <h1>Scan the field. Read what it <em>means</em>.</h1>
-  <p class="lede">Two parts, one FigJam board. Part 1 scans what competitors do. Part 2 reads what it means, and what you will do about it. The result feeds question 1.3 of your Creative Brief.</p>
+  <h1>Competitive <em>benchmark</em>, step by step.</h1>
+  <p class="lede">In this exercise you look closely at the brands your client competes with, so that your campaign starts from what is already out there. You build it on one FigJam board, in three parts, and you come back to the same board as the weeks go by. You hand in the benchmark together with your Creative Brief at the end of Week 3.</p>
   <div class="toolbar">
-    <!-- TODO: replace # with the FigJam template link before publishing -->
+    <!-- TODO: replace # with the FigJam template link before publishing (the menu link copies it automatically) -->
     <a class="btn primary" id="template-link" href="#">Open the FigJam template</a>
     <button class="btn" type="button" id="expand">Expand all steps</button>
     <button class="btn" type="button" id="collapse">Collapse all steps</button>
@@ -208,73 +230,98 @@ footer li { margin-bottom: 6px; }
   </div>
 </header>
 
-<section class="before" aria-labelledby="before-h">
+<nav class="nav" aria-label="Sections of this guide">
+  <a href="#start">Start</a>
+  <a href="#part1">Part 1<span class="x">: Scan</span></a>
+  <a href="#part2">Part 2<span class="x">: Compare</span></a>
+  <a href="#part3">Part 3<span class="x">: Return</span></a>
+  <a href="#sources">Sources</a>
+  <a class="tpl" id="nav-template" href="#">FigJam template</a>
+</nav>
+
+<section class="before" id="start" aria-labelledby="before-h">
   <h2 id="before-h">Before you start.</h2>
   <ul>
-    <li><strong>One tool.</strong> Duplicate the template into your team’s FigJam. This guide explains. The board is where you work.</li>
-    <li><strong>Who does what.</strong> In Part 1, each of you takes one or two competitors and puts your name and sticky colour on every card. In Part 2, you work together. Your oral exam draws on what you can show you did.</li>
-    <li><strong>Evidence.</strong> Every entry gets a link or screenshot, and the date you saw it.</li>
-    <li><strong>Describe, then interpret.</strong> Part 1 is what is there. Part 2 is what it means. Keep them apart.</li>
-    <li><strong>Culture comes from what the brand shows and says.</strong> Never infer a culture layer from how someone looks, their name or their nationality.</li>
-    <li><strong>About the examples.</strong> They use oat drinks (Oatly, Alpro and dairy milk), a category that is not your client’s. They are written from press coverage, so look at the real pieces yourself. Do not reuse the example answers.</li>
+    <li><strong>One board.</strong> Duplicate the template into your team’s FigJam. This guide explains each step, and the board is where you do the work.</li>
+    <li><strong>A board that grows.</strong> You will come back to the same cards in later weeks. Each time you do, add a line to the cover frame with what you added and what made you change your mind. That is also useful evidence for your oral exam.</li>
+    <li><strong>Who does what.</strong> In Part 1, each of you takes one or two competitors. Put your name and your sticky colour on every card, so it is clear who did what. In Part 2 you work as a team, except for the reverse-engineering step, which you each do on your own.</li>
+    <li><strong>Evidence.</strong> Add a link or a screenshot, and the date you saw it, to everything you write down. Campaigns change quickly, and anyone reading your board needs to be able to check.</li>
+    <li><strong>What you already know.</strong> Every step uses something we have covered in a lecture or workshop. If a term is new, we explain it in a line.</li>
+    <li><strong>Culture.</strong> Use the identity, practice and brand lenses from the kick-off, and base what you say on what the brand shows and says. Please don’t infer a layer from how someone looks, their name or their nationality.</li>
+    <li><strong>The examples.</strong> They use oat drinks (Oatly, Alpro and dairy milk), which is not your client’s category. They come from press coverage, so look at the real pieces yourself, and please don’t reuse the example answers.</li>
   </ul>
 </section>
 
 <!-- ============ PART 1 ============ -->
-<section class="part p1" aria-labelledby="p1">
+<section class="part p1" id="part1" aria-labelledby="p1">
   <div class="part-head">
     <p class="eyebrow">Part 1 / Week 1</p>
-    <h2 id="p1">Scan.</h2>
-    <p>Who else is in this space? Where do they show up, and how do they sound? Keep it factual, so anyone could check what you wrote.</p>
+    <h2 id="p1">Scan and read.</h2>
+    <p>Here you find out who else is in this space, what they offer and how they sound. Then you read one piece of their advertising closely.</p>
     <img src="img/cargo-bike-dog.png" alt="" aria-hidden="true">
   </div>
+  <p class="hold">You can start steps 1 to 4 right away. Steps 5 and 6 use Lecture 2 and Workshop 2, so leave them until after Wednesday. Aim for about two hours each. This is a first look, not a full analysis.</p>
 
   <div class="steps">
   <details>
     <summary><span><span class="t">Choose your competitors.</span><span class="o">Three to five brands, each with a reason.</span></span></summary>
     <div class="body">
-      <p>Pick three to five brands your audience might choose instead of, or alongside, your client. Include at least one direct and one indirect competitor.</p>
+      <p>Pick three to five brands your audience might choose instead of your client, or alongside it. Try to include at least one direct and one indirect competitor.</p>
       <ul>
         <li><strong>Direct:</strong> meets the same need in the same way.</li>
         <li><strong>Indirect:</strong> meets the same need in a different way.</li>
       </ul>
-      <p>Write one sentence per brand on why it is comparable. Choose brands your audience actually meets, not only the ones you already know. Agree who owns which brand.</p>
+      <p>For each brand, write one sentence on why it is comparable. Think about the brands your audience actually comes across, and not only the ones you already know. Then agree who in your team takes which brand, and add the competitors to your stakeholder map, since they are stakeholders too.</p>
       <aside class="note">
         <p class="tag">Example, competitor set for an oat drink</p>
         <p><strong>Alpro, direct:</strong> another plant-based drink on the same shelf.</p>
-        <p><strong>Dairy milk, indirect:</strong> same need (milk for coffee or cereal), different solution.</p>
+        <p><strong>Dairy milk, indirect:</strong> the same need (milk for coffee or cereal), met in a different way.</p>
       </aside>
-      <p class="lecture">Lecture link. Creative Benchmarking, Week 1.</p>
+      <p class="lecture">From the course: creative benchmarking and the stakeholder map, Workshop 1.</p>
     </div>
   </details>
 
   <details>
-    <summary><span><span class="t">Map where they show up.</span><span class="o">A log of at least five recent pieces per brand.</span></span></summary>
+    <summary><span><span class="t">Compare what they offer.</span><span class="o">Products or services, prices and where they are sold.</span></span></summary>
     <div class="body">
-      <p>For each competitor, collect at least five recent pieces from different places: ads, packaging, social posts, street or in-store activity, press. For every piece, log where it ran, the format, whether it is paid, owned, earned or shared, the link or screenshot, and the date you saw it.</p>
+      <p>For each competitor, note the main products or services, what they cost and where people can buy them. Give every price a source and a date, for example a shelf price, a website or a menu.</p>
+      <p>Please compare like with like. Use the same unit for every brand, such as price per litre, per month or per visit, depending on your category.</p>
+      <aside class="note">
+        <p class="tag">Example, the format of a row</p>
+        <p><strong>Alpro:</strong> plant-based drinks, plus yoghurt-style products. Price: € per litre, shop, date seen. Sold in: supermarkets.</p>
+        <p>Fill in your own prices. This example only shows the format, not real figures.</p>
+      </aside>
+      <p class="lecture">From the course: advertising and the marketing mix, Lecture 1.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span><span class="t">Log the pieces.</span><span class="o">At least three recent pieces per brand.</span></span></summary>
+    <div class="body">
+      <p>For each competitor, collect at least three recent pieces from different places, such as ads, packaging, social posts, street or in-store activity and press. For each piece, note where it ran, the format, who is speaking, a link or screenshot, and the date you saw it.</p>
       <ul>
-        <li><strong>Paid:</strong> bought space. <strong>Owned:</strong> the brand’s own pack, site, accounts or venue.</li>
-        <li><strong>Earned:</strong> others talk about it, as in press and reviews. <strong>Shared:</strong> people post it or pass it on.</li>
+        <li><strong>Format:</strong> use the media types from Lecture 1, such as out-of-home, print, video, radio, social or pack.</li>
+        <li><strong>Who is speaking:</strong> the brand itself, or someone else talking about the brand, such as the press, creators or customers.</li>
       </ul>
-      <p>Then answer one question: how often and how consistently does this brand show up?</p>
+      <p>Once you have the pieces, ask yourself how often and how consistently the brand shows up.</p>
       <aside class="note">
         <p class="tag">Example, Oatly</p>
         <ul>
-          <li>Pack: climate message printed on cartons, 2026 (owned).</li>
-          <li>Street and café: outdoor ads plus a free-coffee tour in the UK, 2025 (paid, plus experiential).</li>
-          <li>Place: a bike-thru café in Amsterdam, 2026 (owned, and earned through press).</li>
-          <li>Presence: campaigns in at least four markets (UK, Netherlands, Sweden, Spain). One voice, different topics.</li>
+          <li>Pack: a climate message printed on cartons, 2026. The brand itself.</li>
+          <li>Street and café: outdoor ads and a free-coffee tour in the UK, 2025. The brand itself.</li>
+          <li>Place: a bike-thru café in Amsterdam, 2026. The brand itself, and press coverage by others.</li>
+          <li>Presence: campaigns in at least four markets (UK, Netherlands, Sweden, Spain), with one voice and different topics.</li>
         </ul>
       </aside>
-      <p class="lecture">Lecture link. Creative Benchmarking, Week 1. Stakeholder mapping shows who else shapes the category.</p>
+      <p class="lecture">From the course: types of advertising and media, Lecture 1.</p>
     </div>
   </details>
 
   <details>
-    <summary><span><span class="t">Hear the tone.</span><span class="o">One tone line and one promise line per brand.</span></span></summary>
+    <summary><span><span class="t">Describe tone and message.</span><span class="o">Tone and message for each brand.</span></span></summary>
     <div class="body">
-      <p>Describe the tone in three words, and back each word with a short example from a piece: a phrase, a visual detail. Write the promise in one sentence: what does this brand claim you get?</p>
-      <p>Record both per piece first, then summarise per brand. If a brand’s pieces disagree, write that down. It is information.</p>
+      <p>Describe the tone in three words, and give each word a short piece of evidence from the piece, such as a phrase or a visual detail. Then write the message in one sentence: what is this piece telling people?</p>
+      <p>Do this for each piece first, and then summarise it per brand. If a brand’s pieces say different things, write that down, because it tells you something about the brand.</p>
       <div class="pair">
         <aside class="note weak">
           <p class="tag"><img src="img/cross-coral.png" alt="">Weak</p>
@@ -286,77 +333,18 @@ footer li { margin-bottom: 6px; }
         </aside>
       </div>
       <aside class="note">
-        <p class="tag">Example, Oatly’s promise, per piece</p>
-        <p>2025 outdoor: you will prefer the taste (blind taste test).</p>
-        <p>2026 carton: the brand argues for climate action, not about the product.</p>
+        <p class="tag">Example, Oatly’s message, per piece</p>
+        <p>2025 outdoor: the taste is better than you expect (blind taste test).</p>
+        <p>2026 carton: most people want climate action, so politicians should act.</p>
       </aside>
-      <p class="lecture">Lecture link. Semiotics and how to read advertisements, Week 1. This is your first look at tone.</p>
+      <p class="lecture">From the course: the main message and tone of voice in the Creative Brief, kick-off.</p>
     </div>
   </details>
 
   <details>
-    <summary><span><span class="t">Note who is addressed.</span><span class="o">Two short lists per brand: addressed and suggested.</span></span></summary>
+    <summary><span><span class="t">Read one piece closely.</span><span class="o">Two or three signs per brand, with denotation and connotation.</span></span></summary>
     <div class="body">
-      <p>Use two columns.</p>
-      <ul>
-        <li><strong>Addressed:</strong> who the brand names or speaks to directly.</li>
-        <li><strong>Suggested:</strong> who the setting, language and people shown seem to imagine.</li>
-      </ul>
-      <p>Write what you can see. Do not infer anyone’s ethnicity, religion or background from appearance. This tells you who the brand imagines, not who actually buys.</p>
-      <aside class="note">
-        <p class="tag">Example, Oatly</p>
-        <p><strong>Addressed:</strong> politicians (carton copy).</p>
-        <p><strong>Suggested:</strong> cyclists and café-goers in Amsterdam. The Bike Thru is built around bikes.</p>
-      </aside>
-      <p class="lecture">Lecture link. Social Network Theory and stakeholder mapping, Week 1.</p>
-    </div>
-  </details>
-
-  <details>
-    <summary><span><span class="t">Add one criterion of your own.</span><span class="o">One question, one reason, applied to every brand.</span></span></summary>
-    <div class="body">
-      <p>Add a criterion that matters for your client’s category, and apply it to every competitor. A good one:</p>
-      <ul>
-        <li>is something you can observe in the pieces, not guess;</li>
-        <li>matters in your client’s category;</li>
-        <li>gives you something the other criteria do not. Test it: would your synthesis lose something if you dropped it?</li>
-      </ul>
-      <p>Write it as a question in the template header, with one line on why you chose it. It becomes an extra column in your synthesis (step 11). If you are stuck, think about how a brand handles criticism, how local or international it feels, or what it chooses not to say. Try your own idea first.</p>
-      <aside class="note">
-        <p class="tag">Example, a criterion from the oat-drink set</p>
-        <p><strong>Question:</strong> how does the brand handle criticism?</p>
-        <p><strong>Observed:</strong> Oatly’s Spanish campaign invites people to learn about the company through the bad things said about it, including a staged comedy roast.</p>
-        <p><strong>Why it matters here:</strong> it shows whether a brand in this category can laugh at itself.</p>
-      </aside>
-    </div>
-  </details>
-  </div>
-</section>
-
-<!-- ============ PART 2 ============ -->
-<section class="part p2" aria-labelledby="p2h">
-  <div class="part-head">
-    <p class="eyebrow">Part 2 / Week 2</p>
-    <h2 id="p2h">Read and decide.</h2>
-    <p>Look closely at a few pieces. Ask what they mean and for whom, then decide what your campaign does about it.</p>
-    <img src="img/grandma-reading-stool.png" alt="" aria-hidden="true">
-  </div>
-  <p class="hold">Start with Part 1. Part 2 builds on your Week 1 log and on this week’s lectures on brands and the creative brief. Finish it early in Week 3 at the latest, because the brief closes at the end of that week.</p>
-
-  <div class="steps">
-  <details>
-    <summary><span><span class="t">Pick the pieces.</span><span class="o">Two or three pieces per brand, one frame each.</span></span></summary>
-    <div class="body">
-      <p>From your Part 1 log, choose two or three pieces per competitor. Pick the ones most different from each other, not the most beautiful. Include at least one that is not an ad, such as a pack, a space or a post. Put each piece on its own frame with the image.</p>
-      <p>Read your own brands first, then talk each piece through with your team before you finalise it.</p>
-      <p class="lecture">Lecture link. Understanding brands in advertising, Week 2.</p>
-    </div>
-  </details>
-
-  <details>
-    <summary><span><span class="t">Read the signs.</span><span class="o">Signs per piece, each with denotation and connotation.</span></span></summary>
-    <div class="body">
-      <p>List the signs in the piece: colour, type, setting, people, objects, words. For each one, write what it literally shows (denotation), then what it suggests (connotation). Ask what the audience needs to know already to get it.</p>
+      <p>Choose one piece per brand and use the first steps of the five-step method from Lecture 2 and Workshop 2: observe first, then analyse and deconstruct. Pick out two or three signs, such as a colour, a typeface, a setting, a person, an object or a word. For each sign, write what it literally shows (denotation) and what it suggests (connotation).</p>
       <div class="pair">
         <aside class="note weak">
           <p class="tag"><img src="img/cross-coral.png" alt="">Weak</p>
@@ -368,92 +356,165 @@ footer li { margin-bottom: 6px; }
           <p><strong>Connotation:</strong> the block lengths make a statistic visible, like a bar chart made of words. Opening with “Politicians” makes the shopper a witness, not the target.</p>
         </aside>
       </div>
-      <p class="lecture">Lecture link. Semiotics and how to read advertisements, Week 1.</p>
+      <p class="lecture">From the course: how to understand ads, Lecture 2.</p>
     </div>
   </details>
 
   <details>
-    <summary><span><span class="t">Separate the claims.</span><span class="o">Rational, emotional and implied claims per piece.</span></span></summary>
+    <summary><span><span class="t">Look at who is shown and who is missing.</span><span class="o">Shown, spoken to and missing, with one or two layers.</span></span></summary>
     <div class="body">
-      <p>For each piece, split what it says into three:</p>
+      <p>Stay with the same piece. Ask who is shown, who is spoken to and who is missing. Then name one or two layers from the identity and practice lenses that the piece draws on.</p>
       <ul>
-        <li><strong>Rational claim:</strong> what it states. Can you check it?</li>
-        <li><strong>Emotional appeal:</strong> what it wants you to feel.</li>
-        <li><strong>Implied:</strong> what it suggests without saying it. Mark this as your reading.</li>
+        <li><strong>Identity:</strong> generation, ethnicity or migration background, religion or worldview, language, gender and sexuality, class, region.</li>
+        <li><strong>Practice:</strong> rituals, values, taste and media habits, platform culture, subcultures, professional cultures.</li>
       </ul>
-      <aside class="note">
-        <p class="tag">Example, Oatly carton</p>
-        <p><strong>Rational:</strong> most people worldwide want governments to do more on climate. The figure comes from polling cited by a climate-journalism initiative. We have not verified it ourselves.</p>
-        <p><strong>Emotional:</strong> belonging. You are in the majority, not alone.</p>
-        <p><strong>Implied (our reading):</strong> buying this brand puts you on that side.</p>
-      </aside>
-    </div>
-  </details>
-
-  <details>
-    <summary><span><span class="t">Ask whose story it is.</span><span class="o">Perspective, culture layers and one misfire hypothesis per piece.</span></span></summary>
-    <div class="body">
-      <p>Ask who speaks, who is spoken to, and who is missing. Then name two or three culture layers the piece draws on, using the layers from your brief: generation, language, values, taste and media habits, platform culture. Finally, ask for whom it could misfire, and why. Treat the answer as a hypothesis, not a fact.</p>
+      <p>Only use what the piece shows or says. If you can, add a hypothesis about whom the piece could misfire for, and why. Label it as a hypothesis, since you have not tested it.</p>
       <aside class="note">
         <p class="tag">Example, Oatly carton</p>
         <p><strong>Whose story:</strong> citizens as a silent majority, speaking to politicians. The minority appears only as the 11-word block.</p>
         <p><strong>Layers:</strong> values (civic voice), taste and media habits (a brand as a political voice).</p>
-        <p><strong>Possible misfire:</strong> people who read a political message on a food pack as preaching. Test this, do not assume it.</p>
+        <p><strong>Possible misfire:</strong> people who read a political message on a food pack as preaching. This is something to test, not to assume.</p>
       </aside>
-      <p class="lecture">Lecture link. Cultural Dialogue, Representation and Appropriation.</p>
+      <p class="lecture">From the course: representation and appropriation, Workshop 2. The culture lenses come from the kick-off.</p>
     </div>
   </details>
+  </div>
+</section>
 
-  <details>
-    <summary><span><span class="t">Check the medium.</span><span class="o">One convention and one follow-or-bend note per piece.</span></span></summary>
-    <div class="body">
-      <p>Every medium has habits: what a pack, a poster, a post or a café normally does. Write down the habit, then say whether the piece follows it or bends it. Look beyond the category too. An idea can borrow from film, news, games or another medium, and that is often where originality comes from.</p>
-      <aside class="note">
-        <p class="tag">Example, Oatly</p>
-        <p><strong>Carton:</strong> normally carries product information. Oatly uses that space for a political message, so it bends the habit.</p>
-        <p><strong>Bike Thru:</strong> a drive-thru is a car format. Redesigned around cyclists, it borrows the format and flips who it serves.</p>
-      </aside>
-    </div>
-  </details>
+<!-- ============ PART 2 ============ -->
+<section class="part p2" id="part2" aria-labelledby="p2h">
+  <div class="part-head">
+    <p class="eyebrow">Part 2 / Week 2</p>
+    <h2 id="p2h">Compare and decide.</h2>
+    <p>Now you put your competitors side by side, ask what each one is doing for its audience, and decide what that means for your own campaign.</p>
+    <img src="img/grandma-reading-stool.png" alt="" aria-hidden="true">
+  </div>
+  <p class="hold">Start with Part 1, because Part 2 builds on your Week 1 board and on this week’s lectures on brands, objectives and people. Steps 9 and 10 fit well inside the workshops.</p>
+  <p class="handin">Hand-in: you submit the benchmark together with your Creative Brief at the end of Week 3.</p>
 
+  <div class="steps">
   <details>
-    <summary><span><span class="t">Decide.</span><span class="o">One team frame that feeds Creative Brief 1.3.</span></span></summary>
+    <summary><span><span class="t">Add a criterion of your own.</span><span class="o">One question, with a reason, applied to every brand.</span></span></summary>
     <div class="body">
-      <p>Stop describing and start deciding. Work as a team on one frame, in two parts.</p>
+      <p>Now it is your turn to decide what is worth comparing. Add one criterion and apply it to every competitor. There are two good places to look:</p>
       <ul>
-        <li><strong>Part A:</strong> one row per competitor, with look, tone, claims, channels and your own criterion.</li>
-        <li><strong>Part B:</strong> three headings. <strong>Conventions:</strong> what most of the set does. <strong>Follow or break:</strong> what your agency will do with each convention, and why. <strong>Open space:</strong> what competitors leave open.</li>
+        <li><strong>Your client’s challenge.</strong> Is there something in it that you would want to compare across brands?</li>
+        <li><strong>Part 1.</strong> Did you notice something that none of the criteria captured?</li>
       </ul>
-      <p>Every entry cites at least one piece from your board. Question 1.3 of your brief asks exactly this: which conventions exist, which you will follow or deliberately break, and what is left open.</p>
+      <p>A good criterion is something you can observe in the pieces rather than guess. It matters in your client’s category, and it adds something the other criteria don’t. A simple test: would your synthesis lose something if you dropped it?</p>
+      <p>Write it as a question in the template header, add one line on why you chose it, and apply it to the pieces you already collected. It will become a column in your synthesis in step 11. If you are stuck, you could look at format habits in the category, how a brand handles criticism, or what it chooses not to say. Try your own idea first.</p>
+      <aside class="note">
+        <p class="tag">Example, a criterion noticed in Part 1</p>
+        <p><strong>Question:</strong> how does the brand handle criticism?</p>
+        <p><strong>Observed:</strong> Oatly’s Spanish campaign invites people to learn about the company through the bad things said about it, including a staged comedy roast.</p>
+        <p><strong>Why it matters here:</strong> it shows whether a brand in this category can laugh at itself.</p>
+      </aside>
+      <aside class="note">
+        <p class="tag">Example, a criterion from a challenge (made up)</p>
+        <p>If a client’s challenge is awareness among newcomers, a criterion could be: how easily can a stranger understand what this brand is from a single piece?</p>
+      </aside>
+    </div>
+  </details>
+
+  <details>
+    <summary><span><span class="t">Look at each brand as a sender.</span><span class="o">Personality, associations and a positioning sentence.</span></span></summary>
+    <div class="body">
+      <p>Now look at each competitor as a sender, using the brand lens from the kick-off. For each brand, write down:</p>
+      <ul>
+        <li><strong>Personality:</strong> three words, as we did in the lecture on brands.</li>
+        <li><strong>Associations:</strong> what the brand makes people think of, backed by pieces.</li>
+        <li><strong>Category conventions:</strong> what it does that other brands in the category also do.</li>
+        <li><strong>Positioning:</strong> one sentence on who it is for and how it differs from the others.</li>
+      </ul>
+      <aside class="note">
+        <p class="tag">Example, Oatly (our reading)</p>
+        <p><strong>Personality:</strong> dry, outspoken, irreverent.</p>
+        <p><strong>Positioning:</strong> for people who want a plant-based drink and are comfortable with a brand that argues in public. It argues where Alpro describes flavour.</p>
+      </aside>
+      <p class="lecture">From the course: understanding brands, Lecture 3, and STP in how to understand people, Lecture 5.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span><span class="t">Map think, feel and do.</span><span class="o">What each piece wants its audience to think, feel and do.</span></span></summary>
+    <div class="body">
+      <p>For the piece you read in Part 1, write one line for each of these:</p>
+      <ul>
+        <li><strong>Think:</strong> what should people know or believe afterwards?</li>
+        <li><strong>Feel:</strong> what should they feel?</li>
+        <li><strong>Do:</strong> what should they do next? If there is no clear ask, say so.</li>
+      </ul>
+      <p>Then say which of the three matters most for that piece.</p>
+      <aside class="note">
+        <p class="tag">Example, Oatly carton</p>
+        <p><strong>Think:</strong> most people want climate action.</p>
+        <p><strong>Feel:</strong> part of a majority.</p>
+        <p><strong>Do:</strong> check the real carton. Is there a clear ask, or is the “do” simply to keep buying?</p>
+      </aside>
+      <p class="lecture">From the course: advertising objectives and Think-Feel-Do, Lecture 4.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span><span class="t">Reverse-engineer a campaign.</span><span class="o">Each person takes one competitor campaign: message, big idea, concept and insight.</span></span></summary>
+    <div class="body">
+      <p>This is your Workshop 3 homework, and you each do it on your own, using a competitor’s campaign. We want you to look at a lot of different campaigns, so please choose a different one from your teammates. Use the worksheet from the workshop and work backwards from what you see to:</p>
+      <ul>
+        <li>the message;</li>
+        <li>the big idea;</li>
+        <li>the concept;</li>
+        <li>the consumer insight it seems to rest on.</li>
+      </ul>
+      <p>You cannot know what the agency knew, so mark the insight as your own reading, something you would still need to test. Put your campaign on the board with your name on it.</p>
+      <aside class="note">
+        <p class="tag">Example, Oatly carton (our reading)</p>
+        <p><strong>Message:</strong> most people want climate action, so politicians should act.</p>
+        <p><strong>Big idea:</strong> let the carton speak to politicians.</p>
+        <p><strong>Insight it seems to rest on:</strong> shoppers who already agree want a way to be counted.</p>
+      </aside>
+      <p class="lecture">From the course: reverse-engineering a campaign, Workshop 3.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span><span class="t">Bring it together and decide.</span><span class="o">One team frame, with conclusions for your Creative Brief.</span></span></summary>
+    <div class="body">
+      <p>Now you move from describing to deciding. Work as a team on one frame with three parts:</p>
+      <ul>
+        <li><strong>Part A:</strong> one row per competitor, with look and tone, message and positioning, offer and price, channels, and your own criterion.</li>
+        <li><strong>Part B:</strong> three headings. <strong>Conventions:</strong> what most of the set does. <strong>Follow or break:</strong> what your agency will do with each convention, and why. <strong>Open space:</strong> what competitors leave open.</li>
+        <li><strong>Conclusions:</strong> a short paragraph of three to five sentences on what the benchmark showed, what it means for your campaign, and which question of your brief it feeds. Say what is evidence and what is your own reading.</li>
+      </ul>
+      <p>Every entry should point to at least one piece on your board. Question 1.3 of your brief asks for exactly this: which conventions exist, which ones you will follow or deliberately break, and what is left open. Before you submit, duplicate the frame and label the copy “Submitted with brief”, so you can keep working on the original.</p>
 
       <div class="tablewrap">
         <table>
           <caption>Part A, illustrative only. Yours must be complete and based on pieces you collected.</caption>
           <thead>
-            <tr><th>Brand</th><th>Look</th><th>Tone</th><th>Claims</th><th>Channels</th><th>Your criterion: criticism</th></tr>
+            <tr><th>Brand</th><th>Look and tone</th><th>Message and positioning</th><th>Offer and price</th><th>Channels</th><th>Your criterion: criticism</th></tr>
           </thead>
           <tbody>
             <tr>
               <td>Oatly</td>
-              <td>Text-led. The carton is used as a message space.</td>
-              <td>Dry, ironic, direct.</td>
-              <td>Taste (2025). Climate and policy (2026).</td>
+              <td>Text-led. Dry, ironic, direct. The carton is used as a message space.</td>
+              <td>Taste (2025). Climate and policy (2026). Argues in public.</td>
+              <td>Oat drinks and more. Price: record yours.</td>
               <td>Pack, outdoor, street tours, its own venue.</td>
               <td>Invites it in (Spain, staged roast).</td>
             </tr>
             <tr>
               <td>Alpro</td>
-              <td>Flavour-led. More room for imagery and type, a hand-cut typeface, vivid whites with pops of colour (2023 redesign).</td>
-              <td>Lighter, informal, describes taste.</td>
+              <td>Flavour-led. More room for imagery and type, a hand-cut typeface, vivid whites with pops of colour (2023 redesign). Lighter, informal.</td>
               <td>Taste and texture first, health and planet alongside. A 2026 campaign built on music and rhythm.</td>
+              <td>Drinks and yoghurt-style products. Price: record yours.</td>
               <td>Pack, plus campaigns per market.</td>
               <td>Not checked here.</td>
             </tr>
             <tr>
               <td>Dairy milk <span class="verify">verify</span></td>
-              <td>Origin and farm cues in older Campina work.</td>
-              <td>Down-to-earth, likeable (older Campina description).</td>
+              <td>Origin and farm cues in older Campina work. Down-to-earth, likeable.</td>
               <td>Origin: Dutch milk from member farmers (older campaign).</td>
+              <td>Milk. Price: record yours.</td>
               <td>Not checked here.</td>
               <td>Not checked here.</td>
             </tr>
@@ -467,6 +528,10 @@ footer li { margin-bottom: 6px; }
         <p><strong>Follow or break:</strong> follow only if we can say something specific about taste. Otherwise break it, because the claim is crowded.</p>
         <p><strong>Open space:</strong> the pack as a place for an argument. Only Oatly uses it, and its trade-off is untested: how it reads for people who disagree.</p>
       </aside>
+      <aside class="note">
+        <p class="tag">Example, conclusions</p>
+        <p>Taste is the crowded headline in this set, so a brand that only leads with taste joins the crowd. The open space is the pack as a place for an argument, but we have not tested how it reads for people who disagree. This feeds question 1.3 of the brief, and gives us a starting question for tone in question 4.</p>
+      </aside>
 
       <div class="checks">
         <h3>Check before you finish.</h3>
@@ -475,17 +540,53 @@ footer li { margin-bottom: 6px; }
           <li>Each convention has a clear follow or break, with a reason.</li>
           <li>Open space says where, not “be more creative”.</li>
           <li>Your own criterion appears in the table and changes at least one decision.</li>
+          <li>Your conclusions name the brief question they feed.</li>
         </ul>
       </div>
-      <p class="lecture">Lecture link. Advertising creative brief, Week 2. Data says what is happening. Your synthesis says what it means for your campaign.</p>
+      <p class="lecture">From the course: the Creative Brief, Lectures 3 and 4.</p>
     </div>
   </details>
   </div>
 </section>
 
-<footer>
-  <h2>Where the examples come from.</h2>
-  <p>Press coverage, read in November 2026. Campaigns move on, so look at the real pieces.</p>
+<!-- ============ PART 3 (locked: remove class "locked" from a card and delete its "soon" pill to enable it) ============ -->
+<section class="part p3" id="part3" aria-labelledby="p3h">
+  <div class="part-head noimg">
+    <p class="eyebrow">Part 3 / Weeks 4 and 5</p>
+    <h2 id="p3h">Return and sharpen.</h2>
+    <p>In Weeks 4 and 5 you come back to the same cards with new tools. This part opens in Week 4.</p>
+  </div>
+
+  <div class="steps">
+  <details class="locked">
+    <summary aria-disabled="true"><span><span class="t">Label the channels.<span class="soon">Coming soon</span></span><span class="o">A paid, owned, earned or shared label for every piece in your log.</span></span></summary>
+    <div class="body">
+      <p>After the lecture on media planning, go back to your Part 1 log and give each piece a label.</p>
+      <ul>
+        <li><strong>Paid:</strong> bought space. <strong>Owned:</strong> the brand’s own pack, site, accounts or venue.</li>
+        <li><strong>Earned:</strong> others talk about it, as in press and reviews. <strong>Shared:</strong> people post it or pass it on.</li>
+      </ul>
+      <p>Then ask where your competitors are absent, and add one line to the cover frame about what you changed.</p>
+      <aside class="note">
+        <p class="tag">Example, Oatly</p>
+        <p>Carton: owned. Outdoor ads: paid. Press coverage of the Bike Thru café: earned.</p>
+      </aside>
+      <p class="lecture">From the course: media planning and coherence, Lecture 8.</p>
+    </div>
+  </details>
+
+  <details class="locked">
+    <summary aria-disabled="true"><span><span class="t">Read the copy.<span class="soon">Coming soon</span></span><span class="o">Copy and text-image analysis of competitor pieces.</span></span></summary>
+    <div class="body">
+      <p>We will add the details after the Week 5 lectures on copywriting and storytelling techniques.</p>
+    </div>
+  </details>
+  </div>
+</section>
+
+<footer id="sources">
+  <h2>Sources for the examples.</h2>
+  <p>These come from press coverage, read in November 2026. Campaigns move on quickly, so please look at the real pieces.</p>
   <ul>
     <li><a href="https://vegconomist.com/marketing-and-media/oatly-prints-climate-action-message-cartons-bid-mobilize-the-89/">vegconomist, Oatly carton campaign (31 August 2026)</a></li>
     <li><a href="https://www.grocerygazette.co.uk/2025/03/11/oatly-tour-campaign-free/">Grocery Gazette, Oatly free-coffee tour (11 March 2025)</a></li>
@@ -499,13 +600,45 @@ footer li { margin-bottom: 6px; }
 </main>
 <script>
 (function () {
-  var all = function () { return document.querySelectorAll('details'); };
-  document.getElementById('expand').addEventListener('click', function () {
-    all().forEach(function (d) { d.open = true; });
+  /* expand / collapse */
+  var setAll = function (state) {
+    document.querySelectorAll('details:not(.locked)').forEach(function (d) { d.open = state; });
+  };
+  document.getElementById('expand').addEventListener('click', function () { setAll(true); });
+  document.getElementById('collapse').addEventListener('click', function () { setAll(false); });
+  document.querySelectorAll('details.locked > summary').forEach(function (s) {
+    s.addEventListener('click', function (e) { e.preventDefault(); });
   });
-  document.getElementById('collapse').addEventListener('click', function () {
-    all().forEach(function (d) { d.open = false; });
-  });
+
+  /* one template link, shown twice */
+  var tpl = document.getElementById('template-link');
+  var navTpl = document.getElementById('nav-template');
+  navTpl.href = tpl.href;
+  navTpl.target = tpl.target;
+  navTpl.rel = tpl.rel;
+
+  /* highlight the current section in the sticky menu */
+  var ids = ['start', 'part1', 'part2', 'part3', 'sources'];
+  var links = document.querySelectorAll('.nav a[href^="#"]');
+  var ticking = false;
+  function update() {
+    var line = 130, current = ids[0];
+    ids.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= line) { current = id; }
+    });
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) { current = ids[ids.length - 1]; }
+    links.forEach(function (a) {
+      if (a.getAttribute('href') === '#' + current) { a.setAttribute('aria-current', 'true'); }
+      else { a.removeAttribute('aria-current'); }
+    });
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
+  }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
 })();
 </script>
 </body>
