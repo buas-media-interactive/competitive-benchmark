@@ -168,7 +168,7 @@ summary .o { font-size: 15px; color: var(--teal-shade-2); display: block; margin
 .pair .note { max-width: none; margin: 0; }
 @media (max-width: 40rem) { .pair { grid-template-columns: 1fr; gap: 12px; } }
 
-/* ===== TABLE (step 11) ===== */
+/* ===== TABLE (step 10) ===== */
 .tablewrap { overflow-x: auto; margin: 22px -14px 22px -74px; }
 @media (max-width: 40rem) { .tablewrap { margin: 22px 0; } }
 table { border-collapse: collapse; min-width: 42rem; width: 100%; font-size: 14.5px; line-height: 1.45; background: var(--cream-tint-2); }
@@ -217,20 +217,26 @@ html { scroll-padding-top: 76px; }
 <!--
   HOW TO EDIT THIS PAGE
   =====================
-  1. Template link: search for "TODO" and replace href="#" on the button "Open the FigJam template".
+  1. Template link: search for id="template-link". It is the forced-copy link (ends in /duplicate).
      The FigJam link in the sticky menu copies it automatically.
   2. Page layout, top to bottom:
        TOP BAR (eyebrow + logo)  >  HEADER (title, intro, buttons)  >  STICKY MENU
-       >  BEFORE YOU START  >  PART 1 (steps 1-6)  >  PART 2 (steps 7-11)
-       >  PART 3 (steps 12-13, locked)  >  SOURCES  >  SCRIPT
+       >  BEFORE YOU START  >  PART 1 (steps 1-6)  >  PART 2 (steps 7-10)
+       >  PART 3 (steps 11-12, locked)  >  SOURCES  >  SCRIPT
   3. Each step is one <details> block with a banner comment ("STEP n"). Search for "STEP 7", for example.
   4. Step numbers on the cards are automatic. If you add, remove or reorder a step, also update
-     the sentences that mention step numbers: the grey notes under Part 1 and Part 2 ("steps 1 to 4",
-     "steps 5 and 6", "Steps 9 and 10") and the sentences in step 7 and step 11 ("step 11").
+     the sentences that mention step numbers: the grey note under Part 1 ("steps 1 to 4",
+     "steps 5 and 6") and the sentence in step 7 ("step 10").
+     Note: the reverse-engineering exercise is NOT part of this guide any more (separate exercise).
   5. To open Part 3: remove class="locked" from the step's <details> tag and delete the
      <span class="soon">Coming soon</span> pill. To hide Part 3 completely, add the word hidden to its <section>.
   6. Colours and fonts live in the CSS at the top (search for "Tokens"). Use the design-system colours only.
   7. Keep the folders next to this file: fonts/ and img/.
+  8. The "From the course" lines at the end of each step (which lecture or workshop taught it) are HIDDEN
+     inside comments until you have checked them. Search for "HIDDEN LECTURE LINK". To show one, delete
+     the opening comment mark at the start of that block and the closing mark on the line that says
+     END HIDDEN LECTURE LINK.
+     Note: some steps also mention lectures inside their text (search for "Lecture" and "Workshop").
 -->
 <main>
 
@@ -246,8 +252,8 @@ html { scroll-padding-top: 76px; }
   <p class="lede">In this exercise you look closely at the brands your client competes with, so that your campaign starts from what is already out there. You build it on one FigJam board, in three parts, and you come back to the same board as the weeks go by. You hand in the benchmark together with your Creative Brief at the end of Week 3.</p>
   <!-- Buttons: FigJam template (primary), expand all, collapse all. Locked cards are never opened by "Expand all". -->
   <div class="toolbar">
-    <!-- TODO: replace # with the FigJam template link before publishing (the menu link copies it automatically) -->
-    <a class="btn primary" id="template-link" href="https://www.figma.com/board/4w0KENyumIRXBQqLKhOBUo/Competitive-Benchmark?/duplicate">Open the FigJam template</a>
+    <!-- Template link: forced-copy link (ends in /duplicate), so each person who opens it gets their own copy. The sticky-menu link copies this href automatically. -->
+    <a class="btn primary" id="template-link" href="https://www.figma.com/board/4w0KENyumIRXBQqLKhOBUo/Competitive-Benchmark/duplicate" target="_blank" rel="noopener">Open the FigJam template</a>
     <button class="btn" type="button" id="expand">Expand all steps</button>
     <button class="btn" type="button" id="collapse">Collapse all steps</button>
   </div>
@@ -274,7 +280,7 @@ html { scroll-padding-top: 76px; }
   <ul>
     <li><strong>One board.</strong> Duplicate the template into your team’s FigJam. This guide explains each step, and the board is where you do the work.</li>
     <li><strong>A board that grows.</strong> You will come back to the same cards in later weeks. Each time you do, add a line to the cover frame with what you added and what made you change your mind. That is also useful evidence for your oral exam.</li>
-    <li><strong>Who does what.</strong> In Part 1, each of you takes one or two competitors. Put your name and your sticky colour on every card, so it is clear who did what. In Part 2 you work as a team, except for the reverse-engineering step, which you each do on your own.</li>
+    <li><strong>Who does what.</strong> In Part 1, each of you takes one or two competitors. Put your name and your sticky colour on every card, so it is clear who did what. In Part 2 you work as a team.</li>
     <li><strong>Evidence.</strong> Add a link or a screenshot, and the date you saw it, to everything you write down. Campaigns change quickly, and anyone reading your board needs to be able to check.</li>
     <li><strong>What you already know.</strong> Every step uses something we have covered in a lecture or workshop. If a term is new, we explain it in a line.</li>
     <li><strong>Culture.</strong> Use the identity, practice and brand lenses from the kick-off, and base what you say on what the brand shows and says. Please don’t infer a layer from how someone looks, their name or their nationality.</li>
@@ -321,8 +327,10 @@ html { scroll-padding-top: 76px; }
         <p><strong>Alpro, direct:</strong> another plant-based drink on the same shelf.</p>
         <p><strong>Dairy milk, indirect:</strong> the same need (milk for coffee or cereal), met in a different way.</p>
       </aside>
-      <!-- STEP 1: link to the lecture or workshop (small grey line at the bottom of the card) -->
-     <!-- <p class="lecture">From the course: creative benchmarking and the stakeholder map, Workshop 1.</p> -->
+      <!-- STEP 1: link to the lecture or workshop (small grey line at the bottom of the card). Currently HIDDEN, see the next comment. -->
+      <!-- HIDDEN LECTURE LINK (to check): to show it, delete this opening comment mark and the closing mark below.
+      <p class="lecture">From the course: creative benchmarking and the stakeholder map, Workshop 1.</p>
+      END HIDDEN LECTURE LINK -->
     </div>
   </details>
 
@@ -345,8 +353,10 @@ html { scroll-padding-top: 76px; }
         <p><strong>Alpro:</strong> plant-based drinks, plus yoghurt-style products. Price: € per litre, shop, date seen. Sold in: supermarkets.</p>
         <p>Fill in your own prices. This example only shows the format, not real figures.</p>
       </aside>
-      <!-- STEP 2: link to the lecture or workshop (small grey line at the bottom of the card) -->
-      <!-- <p class="lecture">From the course: advertising and the marketing mix, Lecture 1.</p> -->
+      <!-- STEP 2: link to the lecture or workshop (small grey line at the bottom of the card). Currently HIDDEN, see the next comment. -->
+      <!-- HIDDEN LECTURE LINK (to check): to show it, delete this opening comment mark and the closing mark below.
+      <p class="lecture">From the course: advertising and the marketing mix, Lecture 1.</p>
+      END HIDDEN LECTURE LINK -->
     </div>
   </details>
 
@@ -377,8 +387,10 @@ html { scroll-padding-top: 76px; }
           <li>Presence: campaigns in at least four markets (UK, Netherlands, Sweden, Spain), with one voice and different topics.</li>
         </ul>
       </aside>
-      <!-- STEP 3: link to the lecture or workshop (small grey line at the bottom of the card) -->
-      <!-- <p class="lecture">From the course: types of advertising and media, Lecture 1.</p> -->
+      <!-- STEP 3: link to the lecture or workshop (small grey line at the bottom of the card). Currently HIDDEN, see the next comment. -->
+      <!-- HIDDEN LECTURE LINK (to check): to show it, delete this opening comment mark and the closing mark below.
+      <p class="lecture">From the course: types of advertising and media, Lecture 1.</p>
+      END HIDDEN LECTURE LINK -->
     </div>
   </details>
 
@@ -414,8 +426,10 @@ html { scroll-padding-top: 76px; }
         <p>2025 outdoor: the taste is better than you expect (blind taste test).</p>
         <p>2026 carton: most people want climate action, so politicians should act.</p>
       </aside>
-      <!-- STEP 4: link to the lecture or workshop (small grey line at the bottom of the card) -->
-      <!-- <p class="lecture">From the course: the main message and tone of voice in the Creative Brief, kick-off.</p> -->
+      <!-- STEP 4: link to the lecture or workshop (small grey line at the bottom of the card). Currently HIDDEN, see the next comment. -->
+      <!-- HIDDEN LECTURE LINK (to check): to show it, delete this opening comment mark and the closing mark below.
+      <p class="lecture">From the course: the main message and tone of voice in the Creative Brief, kick-off.</p>
+      END HIDDEN LECTURE LINK -->
     </div>
   </details>
 
@@ -445,8 +459,10 @@ html { scroll-padding-top: 76px; }
           <p><strong>Connotation:</strong> the block lengths make a statistic visible, like a bar chart made of words. Opening with “Politicians” makes the shopper a witness, not the target.</p>
         </aside>
       </div>
-      <!-- STEP 5: link to the lecture or workshop (small grey line at the bottom of the card) -->
-      <!-- <p class="lecture">From the course: how to understand ads, Lecture 2.</p> -->
+      <!-- STEP 5: link to the lecture or workshop (small grey line at the bottom of the card). Currently HIDDEN, see the next comment. -->
+      <!-- HIDDEN LECTURE LINK (to check): to show it, delete this opening comment mark and the closing mark below.
+      <p class="lecture">From the course: how to understand ads, Lecture 2.</p>
+      END HIDDEN LECTURE LINK -->
     </div>
   </details>
 
@@ -474,15 +490,17 @@ html { scroll-padding-top: 76px; }
         <p><strong>Layers:</strong> values (civic voice), taste and media habits (a brand as a political voice).</p>
         <p><strong>Possible misfire:</strong> people who read a political message on a food pack as preaching. This is something to test, not to assume.</p>
       </aside>
-      <!-- STEP 6: link to the lecture or workshop (small grey line at the bottom of the card) -->
-      <!-- <p class="lecture">From the course: representation and appropriation, Workshop 2. The culture lenses come from the kick-off.</p> -->
+      <!-- STEP 6: link to the lecture or workshop (small grey line at the bottom of the card). Currently HIDDEN, see the next comment. -->
+      <!-- HIDDEN LECTURE LINK (to check): to show it, delete this opening comment mark and the closing mark below.
+      <p class="lecture">From the course: representation and appropriation, Workshop 2. The culture lenses come from the kick-off.</p>
+      END HIDDEN LECTURE LINK -->
     </div>
   </details>
   </div>
 </section>
 
 <!-- ======================================================================
-     PART 2 · WEEK 2 · "Compare and decide" · steps 7 to 11 (id="part2")
+     PART 2 · WEEK 2 · "Compare and decide" · steps 7 to 10 (id="part2")
      hold   = green note about timing (mentions step numbers)
      handin = peach note about the hand-in with the Creative Brief
      ====================================================================== -->
@@ -494,7 +512,7 @@ html { scroll-padding-top: 76px; }
     <img src="img/grandma-reading-stool.png" alt="" aria-hidden="true">
   </div>
   <!-- Timing note: update the step numbers here if you change the steps -->
-  <p class="hold">Start with Part 1, because Part 2 builds on your Week 1 board and on this week’s lectures on brands, objectives and people. Steps 9 and 10 fit well inside the workshops.</p>
+  <p class="hold">Start with Part 1, because Part 2 builds on your Week 1 board and on this week’s lectures on brands, objectives and people. You can do some of these steps inside the Week 2 workshops.</p>
   <!-- Hand-in note -->
   <p class="handin">Hand-in: you submit the benchmark together with your Creative Brief at the end of Week 3.</p>
 
@@ -516,7 +534,7 @@ html { scroll-padding-top: 76px; }
         <li><strong>Part 1.</strong> Did you notice something that none of the criteria captured?</li>
       </ul>
       <p>A good criterion is something you can observe in the pieces rather than guess. It matters in your client’s category, and it adds something the other criteria don’t. A simple test: would your synthesis lose something if you dropped it?</p>
-      <p>Write it as a question in the template header, add one line on why you chose it, and apply it to the pieces you already collected. It will become a column in your synthesis in step 11. If you are stuck, you could look at format habits in the category, how a brand handles criticism, or what it chooses not to say. Try your own idea first.</p>
+      <p>Write it as a question in the template header, add one line on why you chose it, and apply it to the pieces you already collected. It will become a column in your synthesis in step 10. If you are stuck, you could look at format habits in the category, how a brand handles criticism, or what it chooses not to say. Try your own idea first.</p>
       <!-- STEP 7: example note (teal note). Tag line = the label at the top of the note. -->
       <aside class="note">
         <p class="tag">Example, a criterion noticed in Part 1</p>
@@ -556,8 +574,10 @@ html { scroll-padding-top: 76px; }
         <p><strong>Personality:</strong> dry, outspoken, irreverent.</p>
         <p><strong>Positioning:</strong> for people who want a plant-based drink and are comfortable with a brand that argues in public. It argues where Alpro describes flavour.</p>
       </aside>
-      <!-- STEP 8: link to the lecture or workshop (small grey line at the bottom of the card) -->
-      <!-- <p class="lecture">From the course: understanding brands, Lecture 3, and STP in how to understand people, Lecture 5.</p> -->
+      <!-- STEP 8: link to the lecture or workshop (small grey line at the bottom of the card). Currently HIDDEN, see the next comment. -->
+      <!-- HIDDEN LECTURE LINK (to check): to show it, delete this opening comment mark and the closing mark below.
+      <p class="lecture">From the course: understanding brands, Lecture 3, and STP in how to understand people, Lecture 5.</p>
+      END HIDDEN LECTURE LINK -->
     </div>
   </details>
 
@@ -586,52 +606,23 @@ html { scroll-padding-top: 76px; }
         <p><strong>Feel:</strong> part of a majority.</p>
         <p><strong>Do:</strong> check the real carton. Is there a clear ask, or is the “do” simply to keep buying?</p>
       </aside>
-      <!-- STEP 9: link to the lecture or workshop (small grey line at the bottom of the card) -->
-     <!-- <p class="lecture">From the course: advertising objectives and Think-Feel-Do, Lecture 4.</p> -->
+      <!-- STEP 9: link to the lecture or workshop (small grey line at the bottom of the card). Currently HIDDEN, see the next comment. -->
+      <!-- HIDDEN LECTURE LINK (to check): to show it, delete this opening comment mark and the closing mark below.
+      <p class="lecture">From the course: advertising objectives and Think-Feel-Do, Lecture 4.</p>
+      END HIDDEN LECTURE LINK -->
     </div>
   </details>
 
   <!-- ================================================================
-       STEP 10 (Part 2): Reverse-engineer a campaign
+       STEP 10 (Part 2): Bring it together and decide
        The card title and the grey line under it are inside <summary>.
        The text you see when the card opens is inside <div class="body">.
        The big step number is added automatically by CSS (do not type it).
        ================================================================ -->
   <details>
     <!-- STEP 10: card title (class "t") and one-line output (class "o") -->
-    <summary><span><span class="t">Reverse-engineer a campaign.</span><span class="o">Each person takes one competitor campaign: message, big idea, concept and insight.</span></span></summary>
-    <!-- STEP 10: instructions (paragraphs, lists) and examples. Everything inside this div shows when the card opens. -->
-    <div class="body">
-      <p>This is your Workshop 3 homework, and you each do it on your own, using a competitor’s campaign. We want you to look at a lot of different campaigns, so please choose a different one from your teammates. Use the worksheet from the workshop and work backwards from what you see to:</p>
-      <ul>
-        <li>the message;</li>
-        <li>the big idea;</li>
-        <li>the concept;</li>
-        <li>the consumer insight it seems to rest on.</li>
-      </ul>
-      <p>You cannot know what the agency knew, so mark the insight as your own reading, something you would still need to test. Put your campaign on the board with your name on it.</p>
-      <!-- STEP 10: example note (teal note). Tag line = the label at the top of the note. -->
-      <aside class="note">
-        <p class="tag">Example, Oatly carton (our reading)</p>
-        <p><strong>Message:</strong> most people want climate action, so politicians should act.</p>
-        <p><strong>Big idea:</strong> let the carton speak to politicians.</p>
-        <p><strong>Insight it seems to rest on:</strong> shoppers who already agree want a way to be counted.</p>
-      </aside>
-      <!-- STEP 10: link to the lecture or workshop (small grey line at the bottom of the card) -->
-      <!-- <p class="lecture">From the course: reverse-engineering a campaign, Workshop 3.</p> -->
-    </div>
-  </details>
-
-  <!-- ================================================================
-       STEP 11 (Part 2): Bring it together and decide
-       The card title and the grey line under it are inside <summary>.
-       The text you see when the card opens is inside <div class="body">.
-       The big step number is added automatically by CSS (do not type it).
-       ================================================================ -->
-  <details>
-    <!-- STEP 11: card title (class "t") and one-line output (class "o") -->
     <summary><span><span class="t">Bring it together and decide.</span><span class="o">One team frame, with conclusions for your Creative Brief.</span></span></summary>
-    <!-- STEP 11: instructions (paragraphs, lists) and examples. Everything inside this div shows when the card opens. -->
+    <!-- STEP 10: instructions (paragraphs, lists) and examples. Everything inside this div shows when the card opens. -->
     <div class="body">
       <p>Now you move from describing to deciding. Work as a team on one frame with three parts:</p>
       <ul>
@@ -641,7 +632,7 @@ html { scroll-padding-top: 76px; }
       </ul>
       <p>Every entry should point to at least one piece on your board. Question 1.3 of your brief asks for exactly this: which conventions exist, which ones you will follow or deliberately break, and what is left open. Before you submit, duplicate the frame and label the copy “Submitted with brief”, so you can keep working on the original.</p>
 
-      <!-- STEP 11: example synthesis table (Part A). Add or remove columns in <thead> and in every <tr>. -->
+      <!-- STEP 10: example synthesis table (Part A). Add or remove columns in <thead> and in every <tr>. -->
       <div class="tablewrap">
         <table>
           <caption>Part A, illustrative only. Yours must be complete and based on pieces you collected.</caption>
@@ -677,20 +668,20 @@ html { scroll-padding-top: 76px; }
         </table>
       </div>
 
-      <!-- STEP 11: example note (teal note). Tag line = the label at the top of the note. -->
+      <!-- STEP 10: example note (teal note). Tag line = the label at the top of the note. -->
       <aside class="note">
         <p class="tag">Example, Part B, one entry per heading</p>
         <p><strong>Convention:</strong> taste is the headline claim. Seen in Alpro’s redesign and Oatly’s 2025 taste test.</p>
         <p><strong>Follow or break:</strong> follow only if we can say something specific about taste. Otherwise break it, because the claim is crowded.</p>
         <p><strong>Open space:</strong> the pack as a place for an argument. Only Oatly uses it, and its trade-off is untested: how it reads for people who disagree.</p>
       </aside>
-      <!-- STEP 11: example note (teal note). Tag line = the label at the top of the note. -->
+      <!-- STEP 10: example note (teal note). Tag line = the label at the top of the note. -->
       <aside class="note">
         <p class="tag">Example, conclusions</p>
         <p>Taste is the crowded headline in this set, so a brand that only leads with taste joins the crowd. The open space is the pack as a place for an argument, but we have not tested how it reads for people who disagree. This feeds question 1.3 of the brief, and gives us a starting question for tone in question 4.</p>
       </aside>
 
-      <!-- STEP 11: "Check before you finish" box -->
+      <!-- STEP 10: "Check before you finish" box -->
       <div class="checks">
         <h3>Check before you finish.</h3>
         <ul>
@@ -701,15 +692,17 @@ html { scroll-padding-top: 76px; }
           <li>Your conclusions name the brief question they feed.</li>
         </ul>
       </div>
-      <!-- STEP 11: link to the lecture or workshop (small grey line at the bottom of the card) -->
-      <!-- <p class="lecture">From the course: the Creative Brief, Lectures 3 and 4.</p> -->
+      <!-- STEP 10: link to the lecture or workshop (small grey line at the bottom of the card). Currently HIDDEN, see the next comment. -->
+      <!-- HIDDEN LECTURE LINK (to check): to show it, delete this opening comment mark and the closing mark below.
+      <p class="lecture">From the course: the Creative Brief, Lectures 3 and 4.</p>
+      END HIDDEN LECTURE LINK -->
     </div>
   </details>
   </div>
 </section>
 
 <!-- ======================================================================
-     PART 3 · WEEKS 4 AND 5 · "Return and sharpen" · steps 12 and 13 (id="part3")
+     PART 3 · WEEKS 4 AND 5 · "Return and sharpen" · steps 11 and 12 (id="part3")
      LOCKED for now. To open a step: remove class="locked" from its <details> tag
      and delete the <span class="soon">Coming soon</span> pill.
      To hide the whole part: add the word hidden to the <section> tag below.
@@ -723,15 +716,15 @@ html { scroll-padding-top: 76px; }
 
   <div class="steps">
   <!-- ================================================================
-       STEP 12 (Part 3 (locked)): Label the channels
+       STEP 11 (Part 3 (locked)): Label the channels
        The card title and the grey line under it are inside <summary>.
        The text you see when the card opens is inside <div class="body">.
        The big step number is added automatically by CSS (do not type it).
        ================================================================ -->
   <details class="locked">
-    <!-- STEP 12: card title (class "t") and one-line output (class "o") -->
+    <!-- STEP 11: card title (class "t") and one-line output (class "o") -->
     <summary aria-disabled="true"><span><span class="t">Label the channels.<span class="soon">Coming soon</span></span><span class="o">A paid, owned, earned or shared label for every piece in your log.</span></span></summary>
-    <!-- STEP 12: instructions (paragraphs, lists) and examples. Everything inside this div shows when the card opens. -->
+    <!-- STEP 11: instructions (paragraphs, lists) and examples. Everything inside this div shows when the card opens. -->
     <div class="body">
       <p>After the lecture on media planning, go back to your Part 1 log and give each piece a label.</p>
       <ul>
@@ -739,26 +732,28 @@ html { scroll-padding-top: 76px; }
         <li><strong>Earned:</strong> others talk about it, as in press and reviews. <strong>Shared:</strong> people post it or pass it on.</li>
       </ul>
       <p>Then ask where your competitors are absent, and add one line to the cover frame about what you changed.</p>
-      <!-- STEP 12: example note (teal note). Tag line = the label at the top of the note. -->
+      <!-- STEP 11: example note (teal note). Tag line = the label at the top of the note. -->
       <aside class="note">
         <p class="tag">Example, Oatly</p>
         <p>Carton: owned. Outdoor ads: paid. Press coverage of the Bike Thru café: earned.</p>
       </aside>
-      <!-- STEP 12: link to the lecture or workshop (small grey line at the bottom of the card) -->
-      <!-- <p class="lecture">From the course: media planning and coherence, Lecture 8.</p> -->
+      <!-- STEP 11: link to the lecture or workshop (small grey line at the bottom of the card). Currently HIDDEN, see the next comment. -->
+      <!-- HIDDEN LECTURE LINK (to check): to show it, delete this opening comment mark and the closing mark below.
+      <p class="lecture">From the course: media planning and coherence, Lecture 8.</p>
+      END HIDDEN LECTURE LINK -->
     </div>
   </details>
 
   <!-- ================================================================
-       STEP 13 (Part 3 (locked)): Read the copy
+       STEP 12 (Part 3 (locked)): Read the copy
        The card title and the grey line under it are inside <summary>.
        The text you see when the card opens is inside <div class="body">.
        The big step number is added automatically by CSS (do not type it).
        ================================================================ -->
   <details class="locked">
-    <!-- STEP 13: card title (class "t") and one-line output (class "o") -->
+    <!-- STEP 12: card title (class "t") and one-line output (class "o") -->
     <summary aria-disabled="true"><span><span class="t">Read the copy.<span class="soon">Coming soon</span></span><span class="o">Copy and text-image analysis of competitor pieces.</span></span></summary>
-    <!-- STEP 13: instructions (paragraphs, lists) and examples. Everything inside this div shows when the card opens. -->
+    <!-- STEP 12: instructions (paragraphs, lists) and examples. Everything inside this div shows when the card opens. -->
     <div class="body">
       <p>We will add the details after the Week 5 lectures on copywriting and storytelling techniques.</p>
     </div>
